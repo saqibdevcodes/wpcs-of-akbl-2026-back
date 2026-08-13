@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  email    String @unique
+  fullName String
+  password String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Excel {
+  id Int @id @default(autoincrement())
+
+  gender                      Int
+  age                         Int
+  region                      Int
+  department                  Int
+  empTenure                   Int
+  overallExperinceSatifyQ2    Int
+  overallExperinceCompleteQ3  Int
+  overallExperinceRecommentQ4 Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
