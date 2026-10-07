@@ -7,7 +7,12 @@ const PORT = process.env.PORT || 3001;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://kf.iriscommunications.cloud"],
+    origin: [
+      "http://localhost:5173",
+      "https://kf.iriscommunications.cloud",
+      "https://wpcs-of-akbl-2026.iriscommunications.cloud",
+      "https://akbl.iriscommunications.cloud",
+    ],
   }),
 );
 

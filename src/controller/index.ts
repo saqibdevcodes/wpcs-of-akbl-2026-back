@@ -5,7 +5,7 @@ import path from "path";
 import ExcelJS from "exceljs";
 import { tabulation, filter } from "../data/index.js";
 
-const TOTAL = 4550;
+const TOTAL = 9311;
 
 const getStats = (data: any[], key: keyof typeof tabulation) => {
   const total = data.length;

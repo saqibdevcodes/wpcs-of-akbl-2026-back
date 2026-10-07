@@ -2,9 +2,14 @@ import express from "express";
 import router from "./routes/index.js";
 import cors from "cors";
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.use(cors({
-    origin: ["http://localhost:5173", "https://kf.iriscommunications.cloud"],
+    origin: [
+        "http://localhost:5173",
+        "https://kf.iriscommunications.cloud",
+        "https://wpcs-of-akbl-2026.iriscommunications.cloud",
+        "https://akbl.iriscommunications.cloud",
+    ],
 }));
 // Middleware to parse JSON
 app.use(express.json());

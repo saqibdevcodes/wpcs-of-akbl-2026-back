@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import ExcelJS from "exceljs";
 import { tabulation, filter } from "../data/index.js";
-const TOTAL = 6000;
+const TOTAL = 4550;
 const getStats = (data, key) => {
     const total = data.length;
     return data.reduce((acc, curr) => {
@@ -50,7 +50,7 @@ export const uploadDataToDb = async (req, res) => {
                 message: "No file uploaded",
             });
         }
-        const filePath = path.join(__dirname, "../../uploads", req.file.filename);
+        const filePath = path.resolve(req.file.path);
         if (!fs.existsSync(filePath)) {
             return res.status(404).json({
                 success: false,

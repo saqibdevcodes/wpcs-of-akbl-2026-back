@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "wpcs-of-akbl-2026-back",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsx src/index.ts",
     "dev": "nodemon --watch src --ext ts --exec \"tsx src/index.ts\"",
-    "build": "tsc"
+    "build": "tsc",
+    "seed": "tsx prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
