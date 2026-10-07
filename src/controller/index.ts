@@ -177,13 +177,12 @@ export const dashboardData = async (req: Request, res: Response) => {
 
     const q3 = data
       .map((item: any) => item.overallExperinceCompleteQ3)
-      .filter((item: any) => item === 5 || item === 6 || item === 7);
+      .filter((item: any) => item === 5 || item === 4);
 
     const q3Count5 = q3.filter((item: any) => item === 5).length;
-    const q3Count6 = q3.filter((item: any) => item === 6).length;
-    const q3Count7 = q3.filter((item: any) => item === 7).length;
+    const q3Count4 = q3.filter((item: any) => item === 4).length;
 
-    const q3TotalCount = q3Count5 + q3Count6 + q3Count7;
+    const q3TotalCount = q3Count5 + q3Count4;
 
     const q3TotalCountPercentage = Number(
       ((q3TotalCount / data.length) * 100).toFixed(2),
@@ -262,8 +261,7 @@ export const dashboardData = async (req: Request, res: Response) => {
         },
         q3: {
           q3Count5,
-          q3Count6,
-          q3Count7,
+          q3Count4,
           q3TotalCount,
           q3TotalCountPercentage,
         },
