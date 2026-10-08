@@ -7,10 +7,41 @@ const PORT = process.env.PORT || 3001;
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://wpcs-akbl-2026.iriscommunications.cloud"
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like curl, mobile, Postman, server-to-server)
+      if (!origin) return callback(null, true);
+
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:3000",
+        "https://wpcs-akbl-2026.iriscommunications.cloud",
+        "https://wpcs-of-akbl-2026.iriscommunications.cloud",
+        "https://kf.iriscommunications.cloud",
+        "https://akbl.iriscommunications.cloud",
+      ];
+
+      // Allow if explicitly listed OR if it's any subdomain under iriscommunications.cloud
+      if (
+        allowedOrigins.includes(origin) ||
+        origin.endsWith(".iriscommunications.cloud")
+      ) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`Not allowed by CORS: ${origin}`));
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Cache-Control",
+      "Pragma",
+      "Expires",
+      "X-Requested-With",
     ],
+    credentials: true,
   }),
 );
 
