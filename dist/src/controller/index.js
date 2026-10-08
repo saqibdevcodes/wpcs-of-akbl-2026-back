@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import ExcelJS from "exceljs";
 import { tabulation, filter } from "../data/index.js";
-const TOTAL = 4550;
+const TOTAL = 9311;
 const getStats = (data, key) => {
     const total = data.length;
     return data.reduce((acc, curr) => {
@@ -140,11 +140,10 @@ export const dashboardData = async (req, res) => {
         const q2TotalCountPercentage = Number(((q2TotalCount / data.length) * 100).toFixed(2));
         const q3 = data
             .map((item) => item.overallExperinceCompleteQ3)
-            .filter((item) => item === 5 || item === 6 || item === 7);
+            .filter((item) => item === 5 || item === 4);
         const q3Count5 = q3.filter((item) => item === 5).length;
-        const q3Count6 = q3.filter((item) => item === 6).length;
-        const q3Count7 = q3.filter((item) => item === 7).length;
-        const q3TotalCount = q3Count5 + q3Count6 + q3Count7;
+        const q3Count4 = q3.filter((item) => item === 4).length;
+        const q3TotalCount = q3Count5 + q3Count4;
         const q3TotalCountPercentage = Number(((q3TotalCount / data.length) * 100).toFixed(2));
         const q4 = data
             .map((item) => item.overallExperinceRecommentQ4)
@@ -204,8 +203,7 @@ export const dashboardData = async (req, res) => {
                 },
                 q3: {
                     q3Count5,
-                    q3Count6,
-                    q3Count7,
+                    q3Count4,
                     q3TotalCount,
                     q3TotalCountPercentage,
                 },
