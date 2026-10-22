@@ -7,7 +7,7 @@ import { tabulation, filter } from "../data/index.js";
 import { region1Where } from "../lib/region1.js";
 import { readSurveyRows } from "../lib/importSurvey.js";
 
-const TOTAL = 9311;
+const TOTAL = 9206;
 
 const getStats = (data: any[], key: keyof typeof tabulation) => {
   const total = data.length;
@@ -124,7 +124,8 @@ export const dashboardData = async (req: Request, res: Response) => {
     } catch (error) {
       return res.status(400).json({
         success: false,
-        message: error instanceof Error ? error.message : "Invalid Region 1 filter.",
+        message:
+          error instanceof Error ? error.message : "Invalid Region 1 filter.",
       });
     }
 
