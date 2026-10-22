@@ -18,6 +18,29 @@ export const tabulation = {
     4: "Overseas",
   },
 
+  region1: {
+    1: "BALOCHISTAN",
+    2: "CPC",
+    3: "FAISALABAD",
+    4: "GFS",
+    5: "GUJRANWALA",
+    6: "HAZARA & GB",
+    7: "INTER SINDH",
+    8: "ISLAMABAD",
+    9: "JHELUM",
+    10: "JHELUM & AJK",
+    11: "Karachi North",
+    12: "Karachi South",
+    13: "KHI NORTH",
+    14: "KHI SOUTH",
+    15: "KPK",
+    16: "LAHORE NORTH",
+    17: "LAHORE SOUTH",
+    18: "MULTAN",
+    19: "RAWALPINDI",
+    20: "SAHIWAL",
+  },
+
   department: {
     1: "Branch Banking Group",
     2: "Bus Dev & Coord Armed Forces",
@@ -90,6 +113,13 @@ export const tabulation = {
 } as const;
 
 export const filter = {
+  region1: [
+    { label: "blank", value: "-" },
+    ...Object.entries(tabulation.region1).map(([value, label]) => ({
+      label,
+      value,
+    })),
+  ],
   gender: [
     { label: "Male", value: "1" },
     { label: "Female", value: "2" },

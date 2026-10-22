@@ -1,0 +1,1 @@
+ALTER TABLE `Excel` ADD COLUMN `region1` INTEGER NULL;

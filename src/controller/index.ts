@@ -4,6 +4,8 @@ import fs from "fs";
 import path from "path";
 import ExcelJS from "exceljs";
 import { tabulation, filter } from "../data/index.js";
+import { region1Where } from "../lib/region1.js";
+import { readSurveyRows } from "../lib/importSurvey.js";
 
 const TOTAL = 9311;
 
@@ -86,19 +88,7 @@ export const uploadDataToDb = async (req: Request, res: Response) => {
       });
     }
 
-    const rows = worksheet.getRows(2, worksheet.rowCount - 1) ?? [];
-    console.log(rows);
-
-    const data = rows.map((row) => ({
-      gender: Number(row.getCell(2).value ?? 0),
-      age: Number(row.getCell(3).value ?? 0),
-      region: Number(row.getCell(4).value ?? 0),
-      department: Number(row.getCell(5).value ?? 0),
-      empTenure: Number(row.getCell(6).value ?? 0),
-      overallExperinceSatifyQ2: Number(row.getCell(7).value ?? 0),
-      overallExperinceCompleteQ3: Number(row.getCell(8).value ?? 0),
-      overallExperinceRecommentQ4: Number(row.getCell(9).value ?? 0),
-    }));
+    const data = readSurveyRows(worksheet);
 
     await prisma.excel.deleteMany({});
 
@@ -126,9 +116,17 @@ export const uploadDataToDb = async (req: Request, res: Response) => {
 
 export const dashboardData = async (req: Request, res: Response) => {
   try {
-    const { gender, age, region, department, tenure } = req.query;
+    const { gender, age, region, department, tenure, region1 } = req.query;
 
     const where: any = {};
+    try {
+      Object.assign(where, region1Where(region1));
+    } catch (error) {
+      return res.status(400).json({
+        success: false,
+        message: error instanceof Error ? error.message : "Invalid Region 1 filter.",
+      });
+    }
 
     if (gender !== undefined && gender !== "") {
       where.gender = Number(gender);

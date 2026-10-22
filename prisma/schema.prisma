@@ -29,6 +29,7 @@ model Excel {
   gender                      Int
   age                         Int
   region                      Int
+  region1                     Int?
   department                  Int
   empTenure                   Int
   overallExperinceSatifyQ2    Int
